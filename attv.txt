@@ -1,0 +1,41 @@
+SELECT * FROM PACIENTE p
+WHERE p.IDADE BETWEEN 2 AND 5;
+
+SELECT * FROM AGENDAMENTO a
+WHERE a.DATA_HORA BETWEEN '2024-01-01' AND '2024-03-31';
+
+SELECT * FROM MEDICAMENTOS m
+WHERE m.PRECO > 25;
+
+SELECT * FROM RECEITA r
+WHERE r.DATA_EMISSAO > '2024-06-01'
+  AND r.ID_AGENDAMENTO = (SELECT a.id_agendamento
+  						  FROM AGENDAMENTO a
+  						  WHERE a.id_veterinario = (SELECT v.id_veterinario
+  						                             FROM VETERINARIO v
+  						                             WHERE v.nome ='Dr. Ana Souza'));
+  						                       
+SELECT * FROM PACIENTE p
+WHERE p.id_paciente = (SELECT t.id_tutor
+	                 FROM TUTOR t
+	                 WHERE t.nome = 'Maria Silva');
+	                
+	                
+SELECT * FROM ITENSRECEITA i
+WHERE i.id_medicamento = (SELECT m.id_medicamento 
+						  FROM MEDICAMENTOS m
+						  WHERE m.nome = 'Anti-inflamatório Y');
+						 
+SELECT * FROM AGENDAMENTO a
+WHERE a.motivo = 'Exame de sangue'
+AND a.id_veterinario      =  (SELECT v.id_veterinario
+                             FROM VETERINARIO v
+                             WHERE v.nome = 'Dr.Pedro Lima')
+                             
+SELECT * FROM MEDICAMENTOS m
+WHERE m.preco < 50
+
+SELECT * FROM PACIENTE p
+WHERE p.peso BETWEEN 3 AND 10
+
+SELECT * FROM PACIENTE  
